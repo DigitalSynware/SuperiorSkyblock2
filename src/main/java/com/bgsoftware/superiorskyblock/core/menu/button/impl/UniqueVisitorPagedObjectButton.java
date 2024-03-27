@@ -9,6 +9,7 @@ import com.bgsoftware.superiorskyblock.core.itemstack.ItemBuilder;
 import com.bgsoftware.superiorskyblock.core.menu.button.AbstractPagedMenuButton;
 import com.bgsoftware.superiorskyblock.core.menu.button.PagedMenuTemplateButtonImpl;
 import com.bgsoftware.superiorskyblock.core.menu.impl.MenuIslandUniqueVisitors;
+import com.bgsoftware.superiorskyblock.core.menu.view.MenuViewWrapper;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,8 +27,10 @@ public class UniqueVisitorPagedObjectButton extends AbstractPagedMenuButton<Menu
 
         if (clickEvent.getClick().isRightClick())
             subCommandToExecute = "invite";
-        else if (clickEvent.getClick().isLeftClick())
-            subCommandToExecute = "expel";
+        else if (clickEvent.getClick().isLeftClick()) {
+            plugin.getMenus().openMemberRole(menuView.getInventoryViewer(), MenuViewWrapper.fromView(menuView), pagedObject.getVisitor());
+            return;
+        }
         else return;
 
         plugin.getCommands().dispatchSubCommand(clickEvent.getWhoClicked(),
@@ -39,8 +42,8 @@ public class UniqueVisitorPagedObjectButton extends AbstractPagedMenuButton<Menu
         SuperiorPlayer visitor = pagedObject.getVisitor();
         Island island = visitor.getIsland();
 
-        String islandOwner = island != null ? island.getOwner().getName() : "None";
-        String islandName = island != null ? island.getName().isEmpty() ? islandOwner : island.getName() : "None";
+        String islandOwner = island != null ? island.getOwner().getName() : "Ninguno";
+        String islandName = island != null ? island.getName().isEmpty() ? islandOwner : island.getName() : "Ninguno";
 
         return new ItemBuilder(buttonItem)
                 .replaceAll("{0}", visitor.getName())

@@ -54,8 +54,8 @@ public class IslandBuilderImpl implements Island.Builder {
     @Nullable
     public String islandType;
     public long creationTime = System.currentTimeMillis() / 1000;
-    public String discord = "None";
-    public String paypal = "None";
+    public String discord = "Ninguno";
+    public String paypal = "Ninguno";
     public BigDecimal bonusWorth = BigDecimal.ZERO;
     public BigDecimal bonusLevel = BigDecimal.ZERO;
     public boolean isLocked = false;

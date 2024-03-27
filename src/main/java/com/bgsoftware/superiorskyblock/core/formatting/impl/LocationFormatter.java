@@ -18,6 +18,6 @@ public class LocationFormatter implements IFormatter<Location> {
 
     @Override
     public String format(Location value) {
-        return LazyWorldLocation.getWorldName(value) + ", " + value.getBlockX() + ", " + value.getBlockY() + ", " + value.getBlockZ();
+        return value.getBlockX() + ", " + value.getBlockY() + ", " + value.getBlockZ();
     }
 }

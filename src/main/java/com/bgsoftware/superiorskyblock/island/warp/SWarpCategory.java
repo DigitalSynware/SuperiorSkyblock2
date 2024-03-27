@@ -104,7 +104,7 @@ public class SWarpCategory implements WarpCategory {
 
     private String getOwnerName() {
         SuperiorPlayer superiorPlayer = getIsland().getOwner();
-        return superiorPlayer == null ? "None" : superiorPlayer.getName();
+        return superiorPlayer == null ? "Ninguno" : superiorPlayer.getName();
     }
 
 }

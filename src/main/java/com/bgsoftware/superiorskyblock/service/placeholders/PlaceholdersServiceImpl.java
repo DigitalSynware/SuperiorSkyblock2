@@ -139,9 +139,9 @@ public class PlaceholdersServiceImpl implements PlaceholdersService, IService {
                     .put("spawners_multiplier", (island, superiorPlayer) -> island.getSpawnerRatesMultiplier() + "")
                     .put("drops_multiplier", (island, superiorPlayer) -> island.getMobDropsMultiplier() + "")
                     .put("discord", (island, superiorPlayer) ->
-                            island.hasPermission(superiorPlayer, IslandPrivileges.DISCORD_SHOW) ? island.getDiscord() : "None")
+                            island.hasPermission(superiorPlayer, IslandPrivileges.DISCORD_SHOW) ? island.getDiscord() : "Ninguno")
                     .put("paypal", (island, superiorPlayer) ->
-                            island.hasPermission(superiorPlayer, IslandPrivileges.PAYPAL_SHOW) ? island.getPaypal() : "None")
+                            island.hasPermission(superiorPlayer, IslandPrivileges.PAYPAL_SHOW) ? island.getPaypal() : "Ninguno")
                     .put("discord_all", (island, superiorPlayer) -> island.getDiscord())
                     .put("paypal_all", (island, superiorPlayer) -> island.getPaypal())
                     .put("exists", (island, superiorPlayer) -> Formatters.BOOLEAN_FORMATTER.format(island != null, superiorPlayer.getUserLocale()))

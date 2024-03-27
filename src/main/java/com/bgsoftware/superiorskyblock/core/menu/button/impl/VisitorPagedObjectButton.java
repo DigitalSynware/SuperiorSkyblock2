@@ -34,8 +34,8 @@ public class VisitorPagedObjectButton extends AbstractPagedMenuButton<MenuIsland
     public ItemStack modifyViewItem(ItemStack buttonItem) {
         Island island = pagedObject.getIsland();
 
-        String islandOwner = island != null ? island.getOwner().getName() : "None";
-        String islandName = island != null ? island.getName().isEmpty() ? islandOwner : island.getName() : "None";
+        String islandOwner = island != null ? island.getOwner().getName() : "Ninguno";
+        String islandName = island != null ? island.getName().isEmpty() ? islandOwner : island.getName() : "Ninguno";
 
         return new ItemBuilder(buttonItem)
                 .replaceAll("{0}", pagedObject.getName())
