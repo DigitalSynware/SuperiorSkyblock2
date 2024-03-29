@@ -46,7 +46,7 @@ public class EconomyProvider_Vault implements EconomyProvider {
         double moneyInTransaction = Precision.round(getMoneyInBank(offlinePlayer) - moneyBeforeDeposit, 3);
 
         String errorMessage = moneyInTransaction == amount ? getErrorMessageFromResponse(economyResponse) :
-                moneyInTransaction == 0 ? "You have exceed the limit of your bank" : "";
+                moneyInTransaction == 0 ? "No se ha podido procesar" : "";
 
         return new EconomyResult(errorMessage, moneyInTransaction);
     }
@@ -60,7 +60,7 @@ public class EconomyProvider_Vault implements EconomyProvider {
         double moneyInTransaction = Precision.round(moneyBeforeWithdraw - getMoneyInBank(offlinePlayer), 3);
 
         String errorMessage = moneyInTransaction == amount ? getErrorMessageFromResponse(economyResponse) :
-                moneyInTransaction == 0 ? "Couldn't process the transaction" : "";
+                moneyInTransaction == 0 ? "No se ha podido procesar" : "";
 
         return new EconomyResult(errorMessage, moneyInTransaction);
     }
