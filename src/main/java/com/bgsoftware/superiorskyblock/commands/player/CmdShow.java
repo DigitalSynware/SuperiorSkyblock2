@@ -15,12 +15,8 @@ import com.bgsoftware.superiorskyblock.module.BuiltinModules;
 import com.bgsoftware.superiorskyblock.player.PlayerLocales;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CmdShow implements ISuperiorCommand {
 
@@ -112,21 +108,26 @@ public class CmdShow implements ISuperiorCommand {
             List<SuperiorPlayer> members = island.getIslandMembers(false);
 
             if (!Message.ISLAND_INFO_PLAYER_LINE.isEmpty(locale)) {
-                members.forEach(superiorPlayer -> {
+                Iterator<SuperiorPlayer> iterator = members.iterator();
+
+                while (iterator.hasNext()) {
+                    SuperiorPlayer superiorPlayer = iterator.next();
                     try {
-                        rolesStrings.get(superiorPlayer.getPlayerRole())
-                                .append(Message.ISLAND_INFO_PLAYER_LINE.getMessage(locale, superiorPlayer.getName())).append("\n");
+                        rolesStrings.get(superiorPlayer.getPlayerRole()).append(Message.ISLAND_INFO_PLAYER_LINE.getMessage(locale, superiorPlayer.getName())).append(iterator.hasNext() ? ", " : "\n");
                     } catch (NullPointerException ex) {
                         Log.warn("It seems like ", superiorPlayer.getName(), " isn't part of the island of "
                                 , island.getOwner().getName(), ".");
                     }
-                });
+                }
             }
 
-            rolesStrings.keySet().stream()
+
+
+            rolesStrings.keySet()
+                    .stream()
                     .sorted(Collections.reverseOrder(Comparator.comparingInt(PlayerRole::getWeight)))
-                    .forEach(playerRole ->
-                            infoMessage.append(Message.ISLAND_INFO_ROLES.getMessage(locale, playerRole, rolesStrings.get(playerRole))));
+                    .forEach(playerRole -> infoMessage.append(Message.ISLAND_INFO_ROLES.getMessage(locale, playerRole, rolesStrings.get(playerRole).length() == 0 ?
+                                    "Nadie" : rolesStrings.get(playerRole).toString())));
         }
 
         if (!Message.ISLAND_INFO_FOOTER.isEmpty(locale))
